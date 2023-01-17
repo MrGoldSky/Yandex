@@ -1,30 +1,17 @@
-import pygame
-import random
+import sys
 
-if __name__ == '__main__':
-    pygame.init()
-    pygame.display.set_caption('Перетаскивание')
-    size = width, height = 300, 300
-    screen = pygame.display.set_mode(size)
-    screen.fill("black")
-    screen.fill(pygame.Color('green'), pygame.Rect(0, 0, 100, 100))
-    
-    running = True
-    drawing = False
 
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                screen.fill("black")
-                drawing = True
-                x1, y1 = event.pos
-            if event.type == pygame.MOUSEBUTTONUP:
-                drawing = False
-        if drawing:
-            x2, y2 = event.pos
-            screen.fill("black")
-            pygame.draw.rect(screen, ('green'), (x2 - x1, y2 - y1, 100, 100))
-        pygame.display.flip()
-    pygame.quit()
+def a():
+    d = dict()
+    if sys.argv[2] == "--sort":
+        for i in range(2, len(sys.argv)):
+            stri = sys.argv[i].split("=")
+            d.append(tuple(stri[0], stri[1]))
+            d = sorted(d, key=lambda x: x[1] in d)
+    else:
+        for i in range(1, len(sys.argv)):
+            stri = sys.argv[i].split("=")
+            print(f"key: {stri[0]} Value: {stri[1]}")
+
+
+a()
